@@ -17,6 +17,7 @@ type CompileResult* = tuple[
 # Enable/Disable ZIP
 # Enable/Disable Strip
 # Replace linux sha1sum with a Nim function
+# Remove hardcoded name
 
 
 proc crosscompile*(code, target, opt, release, gc, app, ssls, threads: string): CompileResult =
