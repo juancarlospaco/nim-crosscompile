@@ -1,7 +1,7 @@
 import strutils, strformat, os, ospaths, osproc, times, uri, zip/zipfiles
 
 const
-  temp_folder* = getTempDir() / "hackpad"       ## Temporary folder used for temporary files at runtime, etc.
+  temp_folder* = getTempDir() / "nim-crosscompile"       ## Temporary folder used for temporary files at runtime, etc.
   strip_cmd*  = "strip --verbose --strip-all"   ## Linux Bash command to strip the compiled binary executables.
   windows_args* = "--gcc.exe:/usr/bin/x86_64-w64-mingw32-gcc --gcc.linkerexe:/usr/bin/x86_64-w64-mingw32-gcc"  ## Windows Bash command line extra parameters for CrossCompilation on demand, for target Windows.
   android_args* = "--gcc.exe:/opt/android-ndk/toolchains/x86_64-4.9/prebuilt/linux-x86_64/bin/x86_64-linux-android-gcc --gcc.linkerexe:/opt/android-ndk/toolchains/x86_64-4.9/prebuilt/linux-x86_64/bin/x86_64-linux-android-gcc" ## Android Bash command line extra parameters for CrossCompilation on demand, for target Android.
@@ -12,8 +12,6 @@ type CompileResult* = tuple[
 
 
 # TODO:   (all boolean parameters)
-# Replace linux sha1sum with a Nim function
-# Remove hardcoded name
 # add to Hackpad
 # add to Telegram-Nim-Bot
 
@@ -25,7 +23,7 @@ proc crosscompile*(code, target, opt, release, gc, app, ssls, threads: string,
   var win, winzip, winsha, lin, linzip, linsha, doc, doczip, logs, jsf, jszip, jssha, andr, andrzip, andrsha: string
   if countLines(code.strip) >= 1:
     let
-      temp_file_nim = temp_folder / "hackpad" & $epochTime().int & ".nim"
+      temp_file_nim = temp_folder / "nim-crosscompile" & $epochTime().int & ".nim"
       temp_file_bin = temp_file_nim.replace(".nim", ".bin")  # .bin is not really needed, but some browsers complain of no file extension.
       temp_file_exe = temp_file_nim.replace(".nim", ".exe")
       temp_file_html = temp_file_nim.replace(".nim", ".html")
