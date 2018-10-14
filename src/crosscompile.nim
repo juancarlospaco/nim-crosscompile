@@ -8,7 +8,8 @@ const
 createDir(temp_folder)
 type CompileResult* = tuple[
   win, winzip, winsha, lin, linzip, linsha, doc, doczip, logs,
-  jsf, jszip, jssha, andr, andrzip, andrsha: string] ## Tuple with full path string to binaries and SHA1 Sum of binaries.
+  jsf, jszip, jssha, andr, andrzip, andrsha: string
+  ] ## Tuple with full path string to binaries and SHA1 Sum of binaries.
 
 
 # TODO:   (all boolean parameters)
