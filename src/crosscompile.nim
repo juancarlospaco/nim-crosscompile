@@ -1,7 +1,7 @@
 import strutils, strformat, os, ospaths, osproc, times, uri, zip/zipfiles
 
 const
-  temp_folder* = getTempDir() / "nim-crosscompile"       ## Temporary folder used for temporary files at runtime, etc.
+  temp_folder = getTempDir() / "nim-crosscompile"       ## Temporary folder used for temporary files at runtime, etc.
   strip_cmd*  = "strip --verbose --strip-all"   ## Linux Bash command to strip the compiled binary executables.
   windows_args* = "--gcc.exe:/usr/bin/x86_64-w64-mingw32-gcc --gcc.linkerexe:/usr/bin/x86_64-w64-mingw32-gcc"  ## Windows Bash command line extra parameters for CrossCompilation on demand, for target Windows.
   android_args* = "--gcc.exe:/opt/android-ndk/toolchains/x86_64-4.9/prebuilt/linux-x86_64/bin/x86_64-linux-android-gcc --gcc.linkerexe:/opt/android-ndk/toolchains/x86_64-4.9/prebuilt/linux-x86_64/bin/x86_64-linux-android-gcc" ## Android Bash command line extra parameters for CrossCompilation on demand, for target Android.
