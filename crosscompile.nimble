@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.1.0"
+version       = "0.1.1"
 author        = "juancarlospaco"
 description   = "Crosscompile Nim source code into multiple targets on Linux with this proc."
 license       = "MIT"

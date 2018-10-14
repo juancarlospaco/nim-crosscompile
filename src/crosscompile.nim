@@ -33,6 +33,7 @@ proc crosscompile*(code, target, opt, release, gc, app, ssls, threads: string,
     var
       output: string
       exitCode: int
+
     # Linux Compilation.
     if build4linux:
       (output, exitCode) = execCmdEx(fmt"nim {target} {release} {opt} {gc} {app} {ssls} {threads} --out:{temp_file_bin} {temp_file_nim}")
@@ -51,6 +52,7 @@ proc crosscompile*(code, target, opt, release, gc, app, ssls, threads: string,
         z.addFile(temp_file_bin)
         z.close
         linzip = splitPath(temp_file_bin & ".zip").tail
+
     # Windows Compilation.
     if build4windows:
       (output, exitCode) = execCmdEx(fmt"nim {target} {release} {opt} {gc} {app} {ssls} {threads} --cpu:amd64 --os:windows {windows_args} --out:{temp_file_exe} {temp_file_nim}")
@@ -69,6 +71,7 @@ proc crosscompile*(code, target, opt, release, gc, app, ssls, threads: string,
         z.addFile(temp_file_exe)
         z.close
         winzip = splitPath(temp_file_exe & ".zip").tail
+
     # JavaScript Compilation.
     if build4javascript:
       (output, exitCode) = execCmdEx(fmt"nim js -d:nodejs {release} {opt} --out:{temp_file_js} {temp_file_nim}")
@@ -84,6 +87,7 @@ proc crosscompile*(code, target, opt, release, gc, app, ssls, threads: string,
         z.addFile(temp_file_js)
         z.close
         jszip = splitPath(temp_file_js & ".zip").tail
+
     # Android Compilation.
     if build4android:
       (output, exitCode) = execCmdEx(fmt"nim c --os:android {release} {opt} {android_args} --out:{temp_file_andr} {temp_file_nim}")
@@ -102,6 +106,7 @@ proc crosscompile*(code, target, opt, release, gc, app, ssls, threads: string,
         z.addFile(temp_file_andr)
         z.close
         andrzip = splitPath(temp_file_andr & ".zip").tail
+
     # HTML Docs Generation.
     if build4docs:
       (output, exitCode) = execCmdEx(fmt"nim doc --out:{temp_file_html} {temp_file_nim}")
